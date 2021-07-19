@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>用户登录</title>
+    <style>
+        * {
+            margin: 0px auto;
+            padding: 0px;
+			text-align: center;
+        }
+
+        .main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -300px;
+            margin-top: -170px;
+            width: 600px;
+            height: 340px;
+            box-shadow: darkgrey 10px 10px 30px 5px;
+        }
+
+        .p-title {
+            line-height: 60px;
+            font-size: 18px;
+            padding-left: 20px;
+            border-bottom: 1px solid #C0C0C0;
+            margin-bottom: 20px;
+        }
+
+        .u-input {
+            list-style: none;
+            margin: 0px auto;
+        }
+
+        .u-input > li {
+            line-height: 48px;
+            margin-bottom: 20px;
+        }
+
+        .u-input > li > span {
+            display: inline-block;
+            width: 120px;
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .u-input > li > input {
+            border: 1px solid #C0C0C0;
+            outline: none;
+            height: 36px;
+            border-radius: 5px;
+            width: 400px;
+            padding-left: 10px;
+        }
+
+        .u-input > li > button {
+            border: 1px solid #C0C0C0;
+            outline: none;
+            height: 48px;
+            border-radius: 5px;
+            width: 100px;
+            margin-right: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .current {
+            background-color: rgb(64, 158, 255);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <p class="p-title">登录</p>
+    <form th:action="@{/userlogin}" method="post">
+        <ul class="u-input">
+            <li><span>用户名</span><input type="text" id="name" name="name"/></li>
+            <li><span>密码</span><input type="password" id="pwd" name="pwd"/></li>
+            <p style="color: red;" th:if="${param.error}"
+               th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">提示信息</p>
+            <li><span></span>
+                <button type="submit" class="current">提交</button>
+                <button type="reset">重置</button>
+            </li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>
